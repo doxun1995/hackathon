@@ -6,24 +6,27 @@
     <div class="card">
       <h5 class="card-header">編集する</h5>
       <div class="card-body">
-        <div class="form-group">
-          <label for="title" class="text-muted">アプリ名</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="URL" class="text-muted">URL</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="char" class="text-muted">特徴</label>
-          <textarea type="text" class="form-control"></textarea>
-        </div>
-        <div class="form-group">
-            <input type="file">
+        <form action="{{ route('posts.update') }}" method="post">
+          @csrf
+          <div class="form-group">
+            <label for="title" class="text-muted">アプリ名</label>
+            <input type="text" class="form-control" name="title">
           </div>
-        <div class="text-right">
-          <button type="submit" class="btn btn-primary">送信</button>
-        </div>
+          <div class="form-group">
+            <label for="URL" class="text-muted">URL</label>
+            <input type="text" class="form-control" name="url">
+          </div>
+          <div class="form-group">
+            <label for="char" class="text-muted">特徴</label>
+            <textarea type="text" class="form-control" name="body"></textarea>
+          </div>
+          <div class="form-group">
+              <input type="file" name="image_url">
+            </div>
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary">送信</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
