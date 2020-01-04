@@ -15,10 +15,10 @@
             <span class="card-text">URL</span>
             <p class="card-text text-muted">{{$post -> url}}</p>
           </div>
+          <div class="form-group text-right">
+            <button type="submit" class="btn btn-primary">送信</button>
+          </div>
         </form>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">送信</button>
       </div>
     </div>
   </div>
