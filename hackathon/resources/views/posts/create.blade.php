@@ -9,16 +9,16 @@
           @csrf
           <img class="card-img-top" alt="カードの画像" src="/img/sample.jpeg">
           <div class="card-body">
-            <h5 class="card-title">{{$post -> title}}</h5>
+            <h5 class="card-title">{{ $post->title }}</h5>
             <span class="card-text">特徴</span>
-            <p class="card-text text-muted">{{$post -> body}}</p>
+            <p class="card-text text-muted">{{ $post->body}}</p>
             <span class="card-text">URL</span>
-            <p class="card-text text-muted">{{$post -> url}}</p>
+            <p class="card-text text-muted">{{ $post->url}}</p>
+          </div>
+          <div class="form-group text-right">
+            <input type="submit" class="btn btn-primary" value="送信">
           </div>
         </form>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">送信</button>
       </div>
     </div>
   </div>
