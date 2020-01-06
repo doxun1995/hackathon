@@ -10,10 +10,13 @@
           <img class="card-img-top" alt="カードの画像" src="/img/sample.jpeg">
           <div class="card-body">
             <h5 class="card-title">{{ $post->title }}</h5>
+            <input type="hidden" name="title" value="{{ $post->title }}">
             <span class="card-text">特徴</span>
             <p class="card-text text-muted">{{ $post->body}}</p>
+            <input type="hidden" name="body" value="{{ $post->body }}">
             <span class="card-text">URL</span>
             <p class="card-text text-muted">{{ $post->url}}</p>
+            <input type="hidden" name="url" value="{{ $post->url }}">
           </div>
           <div class="form-group text-right">
             <input type="submit" class="btn btn-primary" value="送信">

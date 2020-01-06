@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $query = Post::query();
+        $query = DB::table('posts')->get();
         return view('posts.index')->with('posts',$query);
     }
 
