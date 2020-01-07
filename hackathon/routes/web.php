@@ -11,24 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'PostController@index')->name('posts.index');
+
+Route::group(['middleware' => 'auth'], function() {
+
+  Route::get('/posts/new', 'PostController@new')->name('posts.new');
+  Route::post('/posts/create', 'PostController@create')->name('posts.create');
+  Route::post('/posts/insert', 'PostController@insert')->name('posts.insert');
+
+  Route::get('/posts/edit', 'PostController@edit')->name('posts.edit');
+  Route::post('/posts/update', 'PostController@update')->name('posts.update');
+  Route::post('/posts/update_post', 'PostController@update_post')->name('posts.update_post');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/posts/index', 'PostController@index')->name('posts.index');
-
-Route::get('/posts/new', 'PostController@new')->name('posts.new');
-
-Route::post('/posts/create', 'PostController@create')->name('posts.create');
-
-Route::post('/posts/insert', 'PostController@insert')->name('posts.insert');
-
-Route::get('/posts/edit', 'PostController@edit')->name('posts.edit');
-
-Route::post('/posts/update', 'PostController@update')->name('posts.update');
-
-Route::post('/posts/update_post', 'PostController@update_post')->name('posts.update_post');
