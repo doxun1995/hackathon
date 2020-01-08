@@ -40,6 +40,12 @@ class User extends Authenticatable implements MustVerifyEmailContract
         'email_verified_at' => 'datetime',
     ];
 
+
+    //hasMany設定
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+
     /**
      * メールの送信の確認
      *
@@ -59,5 +65,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new PasswordResetNotification($token));
+
     }
 }
