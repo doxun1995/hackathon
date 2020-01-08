@@ -7,7 +7,7 @@
     @foreach($posts as $post)
 
       <div class="card" style="width: 30rem;">
-        <img class="card-img-top" alt="カードの画像" src="/img/sample.jpeg">
+        <img class="card-img-top" alt="カードの画像" src="{{$post -> image_url}}">
         <div class="card-body">
           <h5 class="card-title">{{$post -> title}}</h5>
           <span class="card-text">特徴</span>

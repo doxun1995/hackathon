@@ -6,7 +6,7 @@
     <div class="card">
       <h5 class="card-header">投稿する</h5>
       <div class="card-body">
-        <form action="{{ route('posts.create') }}" method="post">
+        <form action="{{ route('posts.create') }}" method="post" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
             <label for="title" class="text-muted">アプリ名</label>

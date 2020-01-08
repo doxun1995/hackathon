@@ -21,8 +21,21 @@ class PostController extends Controller
 
     public function create(Request $request)
     {
-        $post = $request;
-        return view('posts.create')->with('post',$post);
+        $post_data = $request->except('image_url');
+        $imagefile = $request->file('image_url');
+        $temp_path = $imagefile->store('public/temp');
+        $read_temp_path = str_replace('public/', 'storage/', $temp_path);
+        $post = array(
+            'title' => $request->title,
+            'body' => $request->body,
+            'url' => $request->url,
+            'image_url' => $request->image_url,
+            'temp_path' => $temp_path,
+            'read_temp_path' => $read_temp_path,
+        );
+
+        $request->session()->put('post', $post);
+        return view('posts.create',compact('post'));
     }
 
     public function insert(Request $request)

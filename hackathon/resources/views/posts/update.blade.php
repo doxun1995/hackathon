@@ -7,7 +7,8 @@
         <h5 class="card-header">編集確認</h5>
         <form action="{{ route('posts.update_post') }}" method="post">
           @csrf
-          <img class="card-img-top" alt="カードの画像" src="/img/sample.jpeg">
+          <img class="card-img-top" alt="カードの画像" src="{{$post -> image_url}}">
+          <input type="hidden" name="image_url" value="{{$post -> image_url}}">
           <div class="card-body">
             <h5 class="card-title">{{$post -> title}}</h5>
             <input type="hidden" name="title" value="{{ $post->title }}">
