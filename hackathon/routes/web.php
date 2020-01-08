@@ -28,5 +28,5 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('/users', 'UserController@index')->name('users.index');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
