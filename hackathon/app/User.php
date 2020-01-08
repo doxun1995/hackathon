@@ -38,8 +38,8 @@ class User extends Authenticatable
     ];
 
     //hasMany設定
-    public function post()
+    public function posts()
     {
-        // return $this->hasMany('App\Post','id','id');
+        return $this->hasMany('App\Post');
     }
 }

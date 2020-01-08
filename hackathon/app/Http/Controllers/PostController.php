@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $query = DB::table('posts')->get();
-        return view('posts.index')->with('posts',$query);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(1);
+        return view('posts/index', [
+            'posts' => $posts,
+        ]);
     }
 
     public function new()
@@ -21,33 +24,28 @@ class PostController extends Controller
 
     public function create(Request $request)
     {
-        $post_data = $request->except('image_url');
-        $imagefile = $request->file('image_url');
-        $temp_path = $imagefile->store('public/temp');
-        $read_temp_path = str_replace('public/', 'storage/', $temp_path);
-        $post = array(
+        $imagefile = $request->file('image_url')->store('public/temp');
+        $read_temp_path = str_replace('public/', 'storage/', $imagefile);
+        return view('posts.create', [
             'title' => $request->title,
             'body' => $request->body,
             'url' => $request->url,
             'image_url' => $request->image_url,
-            'temp_path' => $temp_path,
+            'imagefile' => $imagefile,
             'read_temp_path' => $read_temp_path,
-        );
-
-        $request->session()->put('post', $post);
-        return view('posts.create',compact('post'));
+        ]);
     }
 
     public function insert(Request $request)
     {
-        $post = new Post();
+        $post = new Post;
         $post->title = $request->title;
         $post->body = $request->body;
         $post->url = $request->url;
         $post->image_url = $request->image_url;
-        $post->save();
+        Auth::user()->posts()->save($post);
 
-        return redirect('/posts/index');
+        return redirect('/');
     }
 
     public function edit()
@@ -73,6 +71,11 @@ class PostController extends Controller
         $post->save();
 
         return redirect('/posts/index');
+    }
+
+    public function delete()
+    {
+        
     }
 
 }

@@ -18,8 +18,6 @@
             <p class="card-text text-muted">{{$post -> created_at}}</p>
             <span class="card-text">更新日</span>
             <p class="card-text text-muted">{{$post -> updated_at}}</p>
-            <a href="{{ action('PostController@edit', $post->id) }}" class="card-link">編集</a>
-            <a href="{{ action('PostController@delete',$post->id) }}" class="card-link">削除</a>
           </div>
         </div>
       @endforeach
