@@ -45,6 +45,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function posts()
     {
         return $this->hasMany('App\Post');
+    }
 
     /**
      * メールの送信の確認
